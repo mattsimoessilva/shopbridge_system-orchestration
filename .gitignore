@@ -1,0 +1,52 @@
+# System Orchestration Repository
+
+# Ignore Docker-related files
+docker-compose.override.yml
+*.env.local
+.env.*.local
+
+# Ignore Docker volumes and temporary files
+docker-volume-*
+*.sqlite
+*.db
+tmp/
+temp/
+
+# Ignore logs
+*.log
+logs/
+**/logs/
+*.out
+*.err
+
+# Ignore editor-specific files
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore Python cache in ProductAPI submodule (if it ends up generated locally)
+services/productapi/__pycache__/
+services/productapi/*.pyc
+services/productapi/*.pyo
+services/productapi/.Python
+services/productapi/env/
+services/productapi/venv/
+
+# Ignore build artifacts (if any) from .NET microservices submodules
+services/orderapi/bin/
+services/orderapi/obj/
+services/logisticsapi/bin/
+services/logisticsapi/obj/
+
+# Keep submodule references intact
+!.gitmodules
+services/*/.git

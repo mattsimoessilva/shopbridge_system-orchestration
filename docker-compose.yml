@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  orderapi:
+    build: ./services/orderapi
+    container_name: orderapi
+    ports:
+      - "${ORDERAPI_PORT:-5001}:80"
+    volumes:
+      - orderapi_data:/app/Data
+    depends_on:
+      - productapi
+      - logisticsapi
+    networks:
+      - backend
+
+  logisticsapi:
+    build: ./services/logisticsapi
+    container_name: logisticsapi
+    ports:
+      - "${LOGISTICSAPI_PORT:-5002}:80"
+    volumes:
+      - logisticsapi_data:/app/Data
+    networks:
+      - backend
+
+  productapi:
+    build: ./services/productapi
+    container_name: productapi
+    ports:
+      - "${PRODUCTAPI_PORT:-5003}:5000"
+    volumes:
+      - productapi_data:/app/Data
+    networks:
+      - backend
+
+volumes:
+  orderapi_data:
+  logisticsapi_data:
+  productapi_data:
+
+networks:
+  backend:
+    driver: bridge
