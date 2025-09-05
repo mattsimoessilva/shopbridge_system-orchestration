@@ -1,0 +1,9 @@
+[submodule "shopbridge_product"]
+	path = shopbridge_product
+	url = https://github.com/mattsimoessilva/shopbridge_product.git
+[submodule "shopbridge_order"]
+	path = shopbridge_order
+	url = https://github.com/mattsimoessilva/shopbridge_order.git
+[submodule "shopbridge_logistics"]
+	path = shopbridge_logistics
+	url = https://github.com/mattsimoessilva/shopbridge_logistics.git
