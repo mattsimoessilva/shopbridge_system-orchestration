@@ -36,8 +36,8 @@ system-orchestration/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourname/system-orchestration.git
-cd system-orchestration
+git clone https://github.com/yourname/shopbridge_system-orchestration.git
+cd shopbridge_system-orchestration
 ```
 
 ### 2. Initialize submodules
