@@ -1,14 +1,16 @@
-﻿# System Orchestration Repository
+﻿# System Orchestration Repository  
 
-This repository provides the orchestration layer for running the three microservices of the project:  
+This repository constitutes the **orchestration layer** for the integrated operation of three microservices developed as part of the **MVP project for the Third Sprint of the Full Stack Development postgraduate program at CCEC - PUC-Rio**. It provides a structured framework to facilitate local development, integration testing, and coordinated execution of the microservices architecture.  
+
+The system orchestrates the following services:  
 
 - **OrderAPI** (ASP.NET Core)  
 - **LogisticsAPI** (ASP.NET Core)  
 - **ProductAPI** (Flask)  
 
-Each microservice is contained in its **own GitHub repository** as required. This repository brings them together through Docker Compose for local development and integration testing.
+Each microservice resides in its **own dedicated GitHub repository** as per the project requirements. This orchestration repository consolidates them through **Docker Compose**, ensuring consistent and reproducible runtime environments.  
 
----
+---  
 
 ## Repository Structure
 
@@ -18,7 +20,7 @@ system-orchestration/
 ├── docker-compose.yml    # Defines all services and their runtime configuration
 ├── .env                  # Centralized environment variables (ports, configs)
 │
-├── services/             # Git submodules pointing to the microservice repos
+├── services/             # Git submodules linking to the microservice repositories
 │   ├── orderapi/
 │   ├── logisticsapi/
 │   └── productapi/
@@ -27,10 +29,10 @@ system-orchestration/
     └── README.md
 ```
 
-- The `services/` directory does not contain original code; instead, it links to external repositories via Git submodules.  
-- Volumes are used to persist SQLite database files for each service.  
+- The `services/` directory does **not contain original code**, but rather serves as a reference to external repositories via Git submodules.  
+- Docker volumes are employed to **persist SQLite database files**, ensuring continuity of data across container lifecycles.  
 
----
+---  
 
 ## Getting Started
 
@@ -44,16 +46,15 @@ cd shopbridge_system-orchestration
 ```bash
 git submodule update --init --recursive
 ```
-This pulls the code from the three microservice repositories into the `services/` folder.
+This command retrieves the code from the three microservice repositories into the `services/` directory.  
 
-### 3. Run the system
+### 3. Launch the system
 ```bash
 docker-compose up --build
 ```
+This builds and starts all services (OrderAPI, LogisticsAPI, ProductAPI) with their local SQLite databases, providing an integrated environment suitable for development and testing.  
 
-This command builds all services (OrderAPI, LogisticsAPI, ProductAPI) and starts them with their local SQLite databases.  
-
----
+---  
 
 ## Service Endpoints
 
@@ -61,17 +62,17 @@ This command builds all services (OrderAPI, LogisticsAPI, ProductAPI) and starts
 - **LogisticsAPI** → [http://localhost:5002](http://localhost:5002)  
 - **ProductAPI** → [http://localhost:5003](http://localhost:5003)  
 
-Inside the Docker Compose network, services can call each other using their service names (`orderapi`, `logisticsapi`, `productapi`) as hostnames.
+Within the Docker Compose network, services can communicate with one another using their respective service names (`orderapi`, `logisticsapi`, `productapi`) as hostnames.  
 
----
+---  
 
 ## Notes
 
-- Each microservice can still be developed independently in its own repository.  
-- Updates to a microservice should be pulled into the orchestration repo by updating its submodule reference.  
-- SQLite databases are persisted in Docker volumes, so data will survive container restarts.  
+- Each microservice maintains independence and can continue development within its own repository.  
+- Updates to a microservice are integrated into this orchestration repository by **updating the respective submodule reference**.  
+- SQLite databases are persisted via Docker volumes, guaranteeing data availability across container restarts.  
 
----
+---  
 
 ## References
 
