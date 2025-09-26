@@ -7,7 +7,7 @@ services:
     ports:
       - "${ORDER_SERVICE_PORT:-3000}:80"
     volumes:
-      - order_service_data:/app/order_application/data
+        - ./services/shopbridge_order/order_application/storage:/app/storage
     depends_on:
       - product_service
       - logistics_service
@@ -20,7 +20,7 @@ services:
     ports:
       - "${LOGISTICS_SERVICE_PORT:-8000}:80"
     volumes:
-      - logistics_service_data:/app/LogisticsAPI/Storage
+      - logistics_service_data:/app/Storage
     environment:
       - ASPNETCORE_URLS=http://+:80
     networks:
@@ -32,7 +32,7 @@ services:
     ports:
       - "${PRODUCT_SERVICE_PORT:-5000}:80"
     volumes:
-      - product_service_data:/app/ProductApplication/Storage
+      - product_service_data:/app/Storage
     environment:
       - ASPNETCORE_URLS=http://+:80
     networks:
