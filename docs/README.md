@@ -72,13 +72,11 @@ graph LR
 
 ```
 
-The **ShopBridge system** is designed as a **modular microservices architecture** to manage the full lifecycle of **customer orders** in an **e-commerce context**.
+The ShopBridge system is designed as a modular **microservices architecture** to manage the full lifecycle of **customer orders** in an e‑commerce context. The **Order Service** is the core component responsible for capturing customer orders, validating order items, managing order status, and persisting the order aggregate. It communicates directly with the **Product Service**, which maintains the product catalog, stock levels, and inventory operations, ensuring product availability is accurate and up to date.
 
-The **Order Service** is the **core component** responsible for **capturing customer orders**, **validating order items**, **managing order status**, and **persisting the order aggregate**. It communicates directly with the **Product Service**, which maintains the **product catalog**, **stock levels**, and **inventory operations**, ensuring that **product availability** is accurate and up to date.
+Simultaneously, the Order Service coordinates with the **Logistics Service**, which handles shipment creation, status tracking, and delivery operations. External dependencies, such as the **ViaCEP Service**, are used by the Logistics Service to validate addresses and ensure shipping feasibility.
 
-Simultaneously, the **Order Service** coordinates with the **Logistics Service**, which handles **shipment creation**, **status tracking**, and **delivery operations**. External dependencies, such as the **ViaCEP Service**, are utilized by the Logistics Service to **validate addresses** and ensure **shipping feasibility**.
-
-By grouping the **internal services** in a visually distinct **subgraph**, the diagram highlights the **encapsulated nature** of ShopBridge’s services while clearly distinguishing **client interactions** and **external integrations**. This design ensures **scalability**, **maintainability**, and **clear separation of responsibilities** among services.
+Grouping the internal services in a visually distinct **subgraph**, the diagram highlights the encapsulated nature of ShopBridge’s services while clearly distinguishing client interactions and external integrations. This design supports **scalability**, **maintainability**, and a clear separation of responsibilities among services.
 
 ---
 
