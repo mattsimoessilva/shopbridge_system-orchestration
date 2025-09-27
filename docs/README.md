@@ -10,28 +10,19 @@ The system orchestrates the following RESTful API services:
 
 Each microservice resides in its **own GitHub repository**, enabling independent development, testing, and versioning. The orchestration repository integrates these services via **Docker Compose**, providing a **reliable, reproducible, and isolated runtime environment** that closely mirrors production. This centralized coordination simplifies **dependency management, network configuration, and lifecycle orchestration**, while maintaining a **clear separation of concerns** between individual service logic and system-level operations.  
 
-## Repository Structure  
+---
 
-The `shopbridge_system-orchestration/` repository provides a **single point of control** for the microservices ecosystem, ensuring consistent runtime behavior and seamless integration.  
+## Table of Contents
+ 
+- [System Architecture Overview](#system-architecture-overview)  
+- [Service Overview](#service-overview) 
+- [Repository Structure](#repository-structure) 
+- [Prerequisites](#prerequisites) 
+- [Getting Started](#getting-started)  
+- [Notes](#notes) 
+- [References](#references) 
 
-
-```
-shopbridge_system-orchestration/
-│
-├── docker-compose.yml       # Defines all services and their runtime configuration
-├── .gitignore               # Git ignore rules
-├── .gitmodules              # Git submodule references
-├── services/                # Git submodules linking to the microservice repositories
-│   ├── shopbridge_order/
-│   ├── shopbridge_logistics/
-│   └── shopbridge_product/
-└── docs/
-    └── README.md            # Documentation entry point
-```
-
-The `services/` directory does **not contain original code**, but acts as a **pointer to each microservice repository**, keeping codebases **isolated, maintainable, and independently versioned**. **Docker volumes** persist SQLite databases, ensuring **data durability across container lifecycles** while supporting lightweight local development. This structure enables **reproducible builds**, **simplified orchestration**, and a **clear separation of responsibilities** between service implementation and system coordination.
-
----  
+---
 
 ## System Architecture Overview
 
@@ -89,6 +80,49 @@ Grouping the internal services in a visually distinct **subgraph**, the diagram 
 | **Logistics Service** | C#       | ASP.NET Core | SQLite  | 8000 | Manages shipments                                        |
 
 Each service runs independently in its **own container**, with isolated runtime environments and clearly defined responsibilities. Communication between services occurs over **internal Docker networking**, ensuring secure, reliable, and low-latency interactions. This architecture enables **horizontal scalability**, allows each service to evolve independently, and supports robust **integration testing** within the orchestration layer. By containerizing each service, the system guarantees consistent behavior across **development, testing, and production environments**, while also simplifying deployment, updates, and rollback procedures.
+
+---
+
+## Repository Structure  
+
+The `shopbridge_system-orchestration/` repository provides a **single point of control** for the microservices ecosystem, ensuring consistent runtime behavior and seamless integration.  
+
+
+```
+shopbridge_system-orchestration/
+│
+├── docker-compose.yml       # Defines all services and their runtime configuration
+├── .gitignore               # Git ignore rules
+├── .gitmodules              # Git submodule references
+├── services/                # Git submodules linking to the microservice repositories
+│   ├── shopbridge_order/
+│   ├── shopbridge_logistics/
+│   └── shopbridge_product/
+└── docs/
+    └── README.md            # Documentation entry point
+```
+
+The `services/` directory does **not contain original code**, but acts as a **pointer to each microservice repository**, keeping codebases **isolated, maintainable, and independently versioned**. **Docker volumes** persist SQLite databases, ensuring **data durability across container lifecycles** while supporting lightweight local development. This structure enables **reproducible builds**, **simplified orchestration**, and a **clear separation of responsibilities** between service implementation and system coordination.
+
+---
+
+## Prerequisites
+
+Before using this repository, ensure the following software is installed and properly configured:
+
+- [Git](https://git-scm.com/) >= 2.30  
+  - Required for cloning the repository, managing submodules, and version control.  
+  - Make sure your global `git` configuration (user.name and user.email) is set.
+
+- [Docker](https://www.docker.com/) >= 20.10  
+  - Required to build, run, and manage containerized services.  
+  - Ensure the Docker daemon is running and your user has permission to execute Docker commands.  
+
+- [Docker Compose](https://docs.docker.com/compose/) >= 1.29  
+  - Required to orchestrate multi-service containers with ease.  
+  - Verify installation with `docker-compose version`.  
+
+> ⚠️ Make sure to use compatible versions of Docker and Docker Compose to avoid runtime conflicts.  
 
 ---
 
